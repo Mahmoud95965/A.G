@@ -1,0 +1,232 @@
+chunk-RPCDYKBN.js?v=034fa91d:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+AuthContext.tsx:85 AuthContext - userData: null
+AuthContext.tsx:86 AuthContext - user roles: {isAdmin: false, isProfessor: false, isStudent: false}
+
+                
+          
+          
+          
+         Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.
+firebase.ts:93 Getting user by UID: SlX6WQZRhphseOYm3dw3aCiSbUx1
+AuthContext.tsx:85 AuthContext - userData: null
+AuthContext.tsx:86 AuthContext - user roles: {isAdmin: false, isProfessor: false, isStudent: false}
+iframe.js:310 Info: The current domain is not authorized for OAuth operations. This will prevent signInWithPopup, signInWithRedirect, linkWithPopup and linkWithRedirect from working. Add your domain (a46e85df-145d-4952-abb3-37d8de51ba18-00-3sas1qaknt1vd.riker.replit.dev) to the OAuth redirect domains list in the Firebase console -> Authentication -> Settings -> Authorized domains tab.
+ml @ iframe.js:310
+(anonymous) @ iframe.js:579
+a @ iframe.js:155
+(anonymous) @ iframe.js:155
+c @ iframe.js:155
+e.vd @ iframe.js:163
+lg @ iframe.js:166
+hg @ iframe.js:166
+F.zk @ iframe.js:165
+a @ iframe.js:155
+(anonymous) @ iframe.js:155
+c @ iframe.js:155
+Qf @ iframe.js:156
+a
+Jf @ iframe.js:156
+cg @ iframe.js:162
+k.l @ iframe.js:160
+os @ iframe.js:578
+(anonymous) @ iframe.js:579
+aj @ iframe.js:240
+b @ iframe.js:238
+firebase.ts:97 User data retrieved: {id: 'SlX6WQZRhphseOYm3dw3aCiSbUx1', username: 'mahmoud', role: 'admin', email: 'mahmoud@gmail.com', displayName: 'mahmoud moussa', …}
+AuthContext.tsx:50 Found existing user document: {id: 'SlX6WQZRhphseOYm3dw3aCiSbUx1', username: 'mahmoud', role: 'admin', email: 'mahmoud@gmail.com', displayName: 'mahmoud moussa', …}
+AuthContext.tsx:85 AuthContext - userData: {id: 'SlX6WQZRhphseOYm3dw3aCiSbUx1', username: 'mahmoud', role: 'admin', email: 'mahmoud@gmail.com', displayName: 'mahmoud moussa', …}
+AuthContext.tsx:86 AuthContext - user roles: {isAdmin: true, isProfessor: false, isStudent: false}
+/admin/content?type=article&action=new:1 Access to XMLHttpRequest at 'https://firebasestorage.googleapis.com/v0/b/test-fbc74.appspot.com/o?name=content%2Farticle%2F1746052271797_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%D8%A9.pdf' from origin 'https://a46e85df-145d-4952-abb3-37d8de51ba18-00-3sas1qaknt1vd.riker.replit.dev' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: It does not have HTTP ok status.
+ManageContent.tsx:257 
+            
+            
+           POST https://firebasestorage.googleapis.com/v0/b/test-fbc74.appspot.com/o?name=content%2Farticle%2F1746052271797_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%D8%A9.pdf net::ERR_FAILED
+send @ firebase_storage.js?v=034fa91d:1491
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+start @ firebase_storage.js?v=034fa91d:334
+start_ @ firebase_storage.js?v=034fa91d:506
+(anonymous) @ firebase_storage.js?v=034fa91d:428
+NetworkRequest @ firebase_storage.js?v=034fa91d:425
+makeRequest @ firebase_storage.js?v=034fa91d:558
+_makeRequest @ firebase_storage.js?v=034fa91d:2403
+makeRequestWithTokens @ firebase_storage.js?v=034fa91d:2416
+await in makeRequestWithTokens
+uploadBytes$1 @ firebase_storage.js?v=034fa91d:2139
+uploadBytes @ firebase_storage.js?v=034fa91d:2428
+handleAddContent @ ManageContent.tsx:257
+(anonymous) @ chunk-4BFJKWC4.js?v=034fa91d:1465
+await in (anonymous)
+callCallback2 @ chunk-RPCDYKBN.js?v=034fa91d:3674
+invokeGuardedCallbackDev @ chunk-RPCDYKBN.js?v=034fa91d:3699
+invokeGuardedCallback @ chunk-RPCDYKBN.js?v=034fa91d:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-RPCDYKBN.js?v=034fa91d:3736
+executeDispatch @ chunk-RPCDYKBN.js?v=034fa91d:7014
+processDispatchQueueItemsInOrder @ chunk-RPCDYKBN.js?v=034fa91d:7034
+processDispatchQueue @ chunk-RPCDYKBN.js?v=034fa91d:7043
+dispatchEventsForPlugins @ chunk-RPCDYKBN.js?v=034fa91d:7051
+(anonymous) @ chunk-RPCDYKBN.js?v=034fa91d:7174
+batchedUpdates$1 @ chunk-RPCDYKBN.js?v=034fa91d:18913
+batchedUpdates @ chunk-RPCDYKBN.js?v=034fa91d:3579
+dispatchEventForPluginEventSystem @ chunk-RPCDYKBN.js?v=034fa91d:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-RPCDYKBN.js?v=034fa91d:5478
+dispatchEvent @ chunk-RPCDYKBN.js?v=034fa91d:5472
+dispatchDiscreteEvent @ chunk-RPCDYKBN.js?v=034fa91d:5449
+/admin/content?type=article&action=new:1 Access to XMLHttpRequest at 'https://firebasestorage.googleapis.com/v0/b/test-fbc74.appspot.com/o?name=content%2Farticle%2F1746052271797_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%D8%A9.pdf' from origin 'https://a46e85df-145d-4952-abb3-37d8de51ba18-00-3sas1qaknt1vd.riker.replit.dev' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: It does not have HTTP ok status.
+ManageContent.tsx:257 
+            
+            
+           POST https://firebasestorage.googleapis.com/v0/b/test-fbc74.appspot.com/o?name=content%2Farticle%2F1746052271797_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%D8%A9.pdf net::ERR_FAILED
+send @ firebase_storage.js?v=034fa91d:1491
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+responseHandler @ firebase_storage.js?v=034fa91d:310
+(anonymous) @ firebase_storage.js?v=034fa91d:461
+Promise.then
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+start @ firebase_storage.js?v=034fa91d:334
+start_ @ firebase_storage.js?v=034fa91d:506
+(anonymous) @ firebase_storage.js?v=034fa91d:428
+NetworkRequest @ firebase_storage.js?v=034fa91d:425
+makeRequest @ firebase_storage.js?v=034fa91d:558
+_makeRequest @ firebase_storage.js?v=034fa91d:2403
+makeRequestWithTokens @ firebase_storage.js?v=034fa91d:2416
+await in makeRequestWithTokens
+uploadBytes$1 @ firebase_storage.js?v=034fa91d:2139
+uploadBytes @ firebase_storage.js?v=034fa91d:2428
+handleAddContent @ ManageContent.tsx:257
+(anonymous) @ chunk-4BFJKWC4.js?v=034fa91d:1465
+await in (anonymous)
+callCallback2 @ chunk-RPCDYKBN.js?v=034fa91d:3674
+invokeGuardedCallbackDev @ chunk-RPCDYKBN.js?v=034fa91d:3699
+invokeGuardedCallback @ chunk-RPCDYKBN.js?v=034fa91d:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-RPCDYKBN.js?v=034fa91d:3736
+executeDispatch @ chunk-RPCDYKBN.js?v=034fa91d:7014
+processDispatchQueueItemsInOrder @ chunk-RPCDYKBN.js?v=034fa91d:7034
+processDispatchQueue @ chunk-RPCDYKBN.js?v=034fa91d:7043
+dispatchEventsForPlugins @ chunk-RPCDYKBN.js?v=034fa91d:7051
+(anonymous) @ chunk-RPCDYKBN.js?v=034fa91d:7174
+batchedUpdates$1 @ chunk-RPCDYKBN.js?v=034fa91d:18913
+batchedUpdates @ chunk-RPCDYKBN.js?v=034fa91d:3579
+dispatchEventForPluginEventSystem @ chunk-RPCDYKBN.js?v=034fa91d:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-RPCDYKBN.js?v=034fa91d:5478
+dispatchEvent @ chunk-RPCDYKBN.js?v=034fa91d:5472
+dispatchDiscreteEvent @ chunk-RPCDYKBN.js?v=034fa91d:5449
+/admin/content?type=article&action=new:1 Access to XMLHttpRequest at 'https://firebasestorage.googleapis.com/v0/b/test-fbc74.appspot.com/o?name=content%2Farticle%2F1746052271797_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%D8%A9.pdf' from origin 'https://a46e85df-145d-4952-abb3-37d8de51ba18-00-3sas1qaknt1vd.riker.replit.dev' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: It does not have HTTP ok status.
+ManageContent.tsx:257 
+            
+            
+           POST https://firebasestorage.googleapis.com/v0/b/test-fbc74.appspot.com/o?name=content%2Farticle%2F1746052271797_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%D8%A9.pdf net::ERR_FAILED
+send @ firebase_storage.js?v=034fa91d:1491
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+responseHandler @ firebase_storage.js?v=034fa91d:310
+(anonymous) @ firebase_storage.js?v=034fa91d:461
+Promise.then
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+responseHandler @ firebase_storage.js?v=034fa91d:310
+(anonymous) @ firebase_storage.js?v=034fa91d:461
+Promise.then
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+start @ firebase_storage.js?v=034fa91d:334
+start_ @ firebase_storage.js?v=034fa91d:506
+(anonymous) @ firebase_storage.js?v=034fa91d:428
+NetworkRequest @ firebase_storage.js?v=034fa91d:425
+makeRequest @ firebase_storage.js?v=034fa91d:558
+_makeRequest @ firebase_storage.js?v=034fa91d:2403
+makeRequestWithTokens @ firebase_storage.js?v=034fa91d:2416
+await in makeRequestWithTokens
+uploadBytes$1 @ firebase_storage.js?v=034fa91d:2139
+uploadBytes @ firebase_storage.js?v=034fa91d:2428
+handleAddContent @ ManageContent.tsx:257
+(anonymous) @ chunk-4BFJKWC4.js?v=034fa91d:1465
+await in (anonymous)
+callCallback2 @ chunk-RPCDYKBN.js?v=034fa91d:3674
+invokeGuardedCallbackDev @ chunk-RPCDYKBN.js?v=034fa91d:3699
+invokeGuardedCallback @ chunk-RPCDYKBN.js?v=034fa91d:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-RPCDYKBN.js?v=034fa91d:3736
+executeDispatch @ chunk-RPCDYKBN.js?v=034fa91d:7014
+processDispatchQueueItemsInOrder @ chunk-RPCDYKBN.js?v=034fa91d:7034
+processDispatchQueue @ chunk-RPCDYKBN.js?v=034fa91d:7043
+dispatchEventsForPlugins @ chunk-RPCDYKBN.js?v=034fa91d:7051
+(anonymous) @ chunk-RPCDYKBN.js?v=034fa91d:7174
+batchedUpdates$1 @ chunk-RPCDYKBN.js?v=034fa91d:18913
+batchedUpdates @ chunk-RPCDYKBN.js?v=034fa91d:3579
+dispatchEventForPluginEventSystem @ chunk-RPCDYKBN.js?v=034fa91d:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-RPCDYKBN.js?v=034fa91d:5478
+dispatchEvent @ chunk-RPCDYKBN.js?v=034fa91d:5472
+dispatchDiscreteEvent @ chunk-RPCDYKBN.js?v=034fa91d:5449
+/admin/content?type=article&action=new:1 Access to XMLHttpRequest at 'https://firebasestorage.googleapis.com/v0/b/test-fbc74.appspot.com/o?name=content%2Farticle%2F1746052271797_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%D8%A9.pdf' from origin 'https://a46e85df-145d-4952-abb3-37d8de51ba18-00-3sas1qaknt1vd.riker.replit.dev' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: It does not have HTTP ok status.
+ManageContent.tsx:257 
+            
+            
+           POST https://firebasestorage.googleapis.com/v0/b/test-fbc74.appspot.com/o?name=content%2Farticle%2F1746052271797_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%B9%D8%B6%D9%88%D9%8A%D8%A9.pdf net::ERR_FAILED
+send @ firebase_storage.js?v=034fa91d:1491
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+responseHandler @ firebase_storage.js?v=034fa91d:310
+(anonymous) @ firebase_storage.js?v=034fa91d:461
+Promise.then
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+responseHandler @ firebase_storage.js?v=034fa91d:310
+(anonymous) @ firebase_storage.js?v=034fa91d:461
+Promise.then
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+responseHandler @ firebase_storage.js?v=034fa91d:310
+(anonymous) @ firebase_storage.js?v=034fa91d:461
+Promise.then
+doTheRequest @ firebase_storage.js?v=034fa91d:452
+(anonymous) @ firebase_storage.js?v=034fa91d:276
+setTimeout
+callWithDelay @ firebase_storage.js?v=034fa91d:274
+start @ firebase_storage.js?v=034fa91d:334
+start_ @ firebase_storage.js?v=034fa91d:506
+(anonymous) @ firebase_storage.js?v=034fa91d:428
+NetworkRequest @ firebase_storage.js?v=034fa91d:425
+makeRequest @ firebase_storage.js?v=034fa91d:558
+_makeRequest @ firebase_storage.js?v=034fa91d:2403
+makeRequestWithTokens @ firebase_storage.js?v=034fa91d:2416
+await in makeRequestWithTokens
+uploadBytes$1 @ firebase_storage.js?v=034fa91d:2139
+uploadBytes @ firebase_storage.js?v=034fa91d:2428
+handleAddContent @ ManageContent.tsx:257
+(anonymous) @ chunk-4BFJKWC4.js?v=034fa91d:1465
+await in (anonymous)
+callCallback2 @ chunk-RPCDYKBN.js?v=034fa91d:3674
+invokeGuardedCallbackDev @ chunk-RPCDYKBN.js?v=034fa91d:3699
+invokeGuardedCallback @ chunk-RPCDYKBN.js?v=034fa91d:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-RPCDYKBN.js?v=034fa91d:3736
+executeDispatch @ chunk-RPCDYKBN.js?v=034fa91d:7014
+processDispatchQueueItemsInOrder @ chunk-RPCDYKBN.js?v=034fa91d:7034
+processDispatchQueue @ chunk-RPCDYKBN.js?v=034fa91d:7043
+dispatchEventsForPlugins @ chunk-RPCDYKBN.js?v=034fa91d:7051
+(anonymous) @ chunk-RPCDYKBN.js?v=034fa91d:7174
+batchedUpdates$1 @ chunk-RPCDYKBN.js?v=034fa91d:18913
+batchedUpdates @ chunk-RPCDYKBN.js?v=034fa91d:3579
+dispatchEventForPluginEventSystem @ chunk-RPCDYKBN.js?v=034fa91d:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-RPCDYKBN.js?v=034fa91d:5478
+dispatchEvent @ chunk-RPCDYKBN.js?v=034fa91d:5472
+dispatchDiscreteEvent @ chunk-RPCDYKBN.js?v=034fa91d:5449

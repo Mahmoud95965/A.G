@@ -1,0 +1,241 @@
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { logoutUser } from "@/lib/firebase";
+import { useAuth } from "@/contexts/AuthContext";
+import { ChevronDown, Menu, GraduationCap, X, User, LogOut } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useToast } from "@/hooks/use-toast";
+
+interface NavbarProps {
+  onOpenLogin: () => void;
+  onOpenSignup: () => void;
+}
+
+export default function Navbar({ onOpenLogin, onOpenSignup }: NavbarProps) {
+  const [location] = useLocation();
+  const { toast } = useToast();
+  const { user, isAdmin, userData } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      toast({
+        title: "تم تسجيل الخروج بنجاح",
+        description: "نتمنى أن نراك مرة أخرى قريبًا",
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "فشل تسجيل الخروج",
+        description: "حدث خطأ أثناء تسجيل الخروج",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location]);
+
+  return (
+    <header className="bg-white shadow-md sticky top-0 z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center py-3">
+          {/* Logo and title */}
+          <div className="flex items-center space-x-4 space-x-reverse">
+            <Link href="/">
+              <div className="flex items-center cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-9 w-9 rounded-full text-primary" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+                <h1 className="text-xl font-bold text-primary-dark hidden md:block">كلية الزراعة بقنا</h1>
+              </div>
+            </Link>
+          </div>
+          
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex items-center space-x-6 space-x-reverse">
+            <Link href="/">
+              <span className={`text-${location === "/" ? "primary" : "neutral-600"} font-medium py-2 border-b-2 ${location === "/" ? "border-primary" : "border-transparent hover:border-primary"} hover:text-primary transition-colors cursor-pointer`}>
+                الرئيسية
+              </span>
+            </Link>
+            <Link href="/articles">
+              <span className={`text-${location === "/articles" ? "primary" : "neutral-600"} font-medium py-2 border-b-2 ${location === "/articles" ? "border-primary" : "border-transparent hover:border-primary"} hover:text-primary transition-colors cursor-pointer`}>
+                المقالات العلمية
+              </span>
+            </Link>
+            <Link href="/projects">
+              <span className={`text-${location === "/projects" ? "primary" : "neutral-600"} font-medium py-2 border-b-2 ${location === "/projects" ? "border-primary" : "border-transparent hover:border-primary"} hover:text-primary transition-colors cursor-pointer`}>
+                مشاريع التخرج
+              </span>
+            </Link>
+            <Link href="/ebooks">
+              <span className={`text-${location === "/ebooks" ? "primary" : "neutral-600"} font-medium py-2 border-b-2 ${location === "/ebooks" ? "border-primary" : "border-transparent hover:border-primary"} hover:text-primary transition-colors cursor-pointer`}>
+                المكتبة الإلكترونية
+              </span>
+            </Link>
+            <Link href="/departments">
+              <span className={`text-${location === "/departments" ? "primary" : "neutral-600"} font-medium py-2 border-b-2 ${location === "/departments" ? "border-primary" : "border-transparent hover:border-primary"} hover:text-primary transition-colors cursor-pointer`}>
+                الأقسام
+              </span>
+            </Link>
+            <Link href="/contact">
+              <span className={`text-${location === "/contact" ? "primary" : "neutral-600"} font-medium py-2 border-b-2 ${location === "/contact" ? "border-primary" : "border-transparent hover:border-primary"} hover:text-primary transition-colors cursor-pointer`}>
+                تواصل معنا
+              </span>
+            </Link>
+          </nav>
+          
+          {/* User menu or login/signup buttons */}
+          {user ? (
+            <div className="flex items-center space-x-2 space-x-reverse">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center text-sm font-medium text-neutral-700 hover:text-primary focus:outline-none transition duration-150 ease-in-out">
+                    <Avatar className="h-8 w-8 mr-0 md:mr-2">
+                      <AvatarImage src={user.photoURL || undefined} alt={user.displayName || "صورة المستخدم"} />
+                      <AvatarFallback>
+                        {userData?.role === "student" ? (
+                          <GraduationCap className="h-4 w-4" />
+                        ) : (
+                          user.displayName?.charAt(0) || user.email?.charAt(0)
+                        )}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="hidden md:block">{user.displayName || user.email}</span>
+                    <ChevronDown className="h-4 w-4 ml-1" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <Link href="/profile">
+                    <DropdownMenuItem className="cursor-pointer">
+                      الملف الشخصي
+                    </DropdownMenuItem>
+                  </Link>
+                  
+                  {isAdmin && (
+                    <Link href="/admin/dashboard">
+                      <DropdownMenuItem className="cursor-pointer">
+                        لوحة التحكم
+                      </DropdownMenuItem>
+                    </Link>
+                  )}
+                  
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="text-red-600 cursor-pointer" onClick={handleLogout}>
+                    تسجيل الخروج
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-2 space-x-reverse">
+              <Button
+                variant="outline"
+                className="text-primary-dark hover:text-primary border border-primary-dark hover:border-primary px-4 py-1.5 rounded-md transition-colors duration-200"
+                onClick={onOpenLogin}
+              >
+                تسجيل الدخول
+              </Button>
+              <Button
+                className="hidden md:block bg-primary hover:bg-primary-dark text-white px-4 py-1.5 rounded-md transition-colors duration-200"
+                onClick={onOpenSignup}
+              >
+                إنشاء حساب
+              </Button>
+            </div>
+          )}
+          
+          {/* Mobile menu button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={toggleMobileMenu}
+          >
+            <Menu className="h-6 w-6 text-neutral-600" />
+          </Button>
+        </div>
+      </div>
+      
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-neutral-200 p-4">
+          <nav className="grid gap-y-2">
+            <Link href="/">
+              <div className={`flex items-center px-4 py-2 text-base font-medium ${location === "/" ? "text-primary bg-neutral-100" : "text-neutral-600 hover:text-primary hover:bg-neutral-100"} rounded-md transition-colors cursor-pointer`}>
+                <svg className="ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                الرئيسية
+              </div>
+            </Link>
+            <Link href="/articles">
+              <div className={`flex items-center px-4 py-2 text-base font-medium ${location === "/articles" ? "text-primary bg-neutral-100" : "text-neutral-600 hover:text-primary hover:bg-neutral-100"} rounded-md transition-colors cursor-pointer`}>
+                <svg className="ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2m-4 0h4" />
+                </svg>
+                المقالات العلمية
+              </div>
+            </Link>
+            <Link href="/projects">
+              <div className={`flex items-center px-4 py-2 text-base font-medium ${location === "/projects" ? "text-primary bg-neutral-100" : "text-neutral-600 hover:text-primary hover:bg-neutral-100"} rounded-md transition-colors cursor-pointer`}>
+                <svg className="ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                مشاريع التخرج
+              </div>
+            </Link>
+            <Link href="/ebooks">
+              <div className={`flex items-center px-4 py-2 text-base font-medium ${location === "/ebooks" ? "text-primary bg-neutral-100" : "text-neutral-600 hover:text-primary hover:bg-neutral-100"} rounded-md transition-colors cursor-pointer`}>
+                <svg className="ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                المكتبة الإلكترونية
+              </div>
+            </Link>
+            <Link href="/departments">
+              <div className={`flex items-center px-4 py-2 text-base font-medium ${location === "/departments" ? "text-primary bg-neutral-100" : "text-neutral-600 hover:text-primary hover:bg-neutral-100"} rounded-md transition-colors cursor-pointer`}>
+                <svg className="ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                الأقسام
+              </div>
+            </Link>
+            <Link href="/contact">
+              <div className={`flex items-center px-4 py-2 text-base font-medium ${location === "/contact" ? "text-primary bg-neutral-100" : "text-neutral-600 hover:text-primary hover:bg-neutral-100"} rounded-md transition-colors cursor-pointer`}>
+                <svg className="ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.86 5.24a2 2 0 002.28 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                تواصل معنا
+              </div>
+            </Link>
+            {!user && (
+              <Button 
+                className="mt-4 w-full bg-primary hover:bg-primary-dark text-white py-2 rounded-md transition-colors"
+                onClick={onOpenSignup}
+              >
+                إنشاء حساب
+              </Button>
+            )}
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
