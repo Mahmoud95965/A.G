@@ -85,7 +85,10 @@ export async function createStudentResult(data: Partial<StudentResult>): Promise
 }
 
 // رفع النتائج من ملف Excel
-export async function uploadResultsFromExcel(file: File): Promise<void> {
+export async function uploadResultsFromExcel(file: File): Promise<{ success: number; failed: number }> {
+  let successCount = 0;
+  let failedCount = 0;
+
   try {
     const data = await file.arrayBuffer();
     const workbook = XLSX.read(data, { type: 'array' });
@@ -99,31 +102,38 @@ export async function uploadResultsFromExcel(file: File): Promise<void> {
       const id = row["ID"]?.toString() || Math.random().toString();
       const resultRef = doc(db, "results", id);
 
-      // تأكد من تنسيق الأعمدة في ملف Excel كالتالي:
-      // ID, Name, University Email, Academic ID, Department, Level, Semester, Subjects
-      // حيث أن عمود Subjects يجب أن يكون JSON string يحتوي على [{ name, grade }, ...]
-      const result: StudentResult = {
-        id,
-        name: row["Name"] || '',
-        universityEmail: row["University Email"]?.toLowerCase().trim() || '',
-        academicId: row["Academic ID"] || '',
-        department: row["Department"] || '',
-        level: row["Level"] || '',
-        semester: row["Semester"] || '',
-        subjects: [],
-      };
-
       try {
-        result.subjects = JSON.parse(row["Subjects"]);
-      } catch (e) {
-        console.warn(`تعذر تحويل مواد الطالب للسطر ${index + 2}:`, row["Subjects"]);
-      }
+        // تأكد من تنسيق الأعمدة في ملف Excel كالتالي:
+        // ID, Name, University Email, Academic ID, Department, Level, Semester, Subjects
+        // حيث أن عمود Subjects يجب أن يكون JSON string يحتوي على [{ name, grade }, ...]
+        const result: StudentResult = {
+          id,
+          name: row["Name"] || '',
+          universityEmail: row["University Email"]?.toLowerCase().trim() || '',
+          academicId: row["Academic ID"] || '',
+          department: row["Department"] || '',
+          level: row["Level"] || '',
+          semester: row["Semester"] || '',
+          subjects: [],
+        };
 
-      batch.set(resultRef, result);
+        try {
+          result.subjects = JSON.parse(row["Subjects"]);
+        } catch (e) {
+          console.warn(`تعذر تحويل مواد الطالب للسطر ${index + 2}:`, row["Subjects"]);
+        }
+
+        batch.set(resultRef, result);
+        successCount++;
+      } catch (e) {
+        console.error(`Error processing row ${index + 2}:`, e);
+        failedCount++;
+      }
     });
 
     await batch.commit();
     console.log('تم رفع النتائج بنجاح.');
+    return { success: successCount, failed: failedCount };
   } catch (error) {
     console.error('حدث خطأ أثناء رفع النتائج من Excel:', error);
     throw error;

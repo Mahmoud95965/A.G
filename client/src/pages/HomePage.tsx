@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, GraduationCap, FileText, Upload } from "lucide-react";
-import { StatisticsSection } from "@/components/home/StatisticsSection";
+import StatisticsSection from "@/components/home/StatisticsSection";
 import { getRecentContent } from "@/lib/firebase";
 
 export default function HomePage() {

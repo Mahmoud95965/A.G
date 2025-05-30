@@ -3,66 +3,67 @@ import { getContentByType } from "@/lib/firebase";
 import ContentCard from "@/components/content/ContentCard";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { ContentType, Department } from "@shared/schema";
-import { DocumentData } from "firebase/firestore";
+import { ContentType, ContentTypeType, Department, DepartmentType } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { DocumentData } from 'firebase/firestore';
+
+interface Project extends DocumentData {
+  id: string;
+  title: string;
+  description: string;
+  contentType: ContentTypeType;
+  authorName: string;
+  studentYear?: string;
+  department?: DepartmentType;
+  fileUrl?: string;
+  externalLink?: string;
+  thumbnailUrl?: string;
+  createdAt: string | Date;
+}
 
 export default function GraduationProjects() {
-  const [projects, setProjects] = useState<DocumentData[]>([]);
-  const [filteredProjects, setFilteredProjects] = useState<DocumentData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [departmentFilter, setDepartmentFilter] = useState<string>("all");
-  const [yearFilter, setYearFilter] = useState<string>("all");
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const data = await getContentByType(ContentType.PROJECT);
-        setProjects(data);
-        setFilteredProjects(data);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  useEffect(() => {
-    let filtered = [...projects];
-    
-    // Apply department filter
-    if (departmentFilter && departmentFilter !== "all") {
-      filtered = filtered.filter(project => project.department === departmentFilter);
-    }
-    
-    // Apply year filter
-    if (yearFilter && yearFilter !== "all") {
-      filtered = filtered.filter(project => project.studentYear === yearFilter);
-    }
-    
-    // Apply search filter
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        project => 
-          project.title.toLowerCase().includes(query) || 
-          project.description.toLowerCase().includes(query) ||
-          project.authorName.toLowerCase().includes(query)
-      );
-    }
-    
-    setFilteredProjects(filtered);
-  }, [departmentFilter, yearFilter, searchQuery, projects]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [departmentFilter, setDepartmentFilter] = useState("all");
+  const [yearFilter, setYearFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Get unique years from projects for filter
   const getUniqueYears = () => {
-    const years = projects.map(project => project.studentYear).filter(Boolean);
-    return [...new Set(years)].sort().reverse();
+    const years = projects
+      .map(project => project.studentYear)
+      .filter((year): year is string => year !== undefined);
+    return Array.from(new Set(years)).sort().reverse();
   };
+
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        setLoading(true);
+        const data = await getContentByType(ContentType.PROJECT);
+        setProjects(data as Project[]);
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProjects();
+  }, []);
+
+  const filteredProjects = projects
+    .filter(project => departmentFilter === "all" || project.department === departmentFilter)
+    .filter(project => yearFilter === "all" || project.studentYear === yearFilter)
+    .filter(project => {
+      if (!searchQuery) return true;
+      const query = searchQuery.toLowerCase();
+      return (
+        project.title.toLowerCase().includes(query) ||
+        project.description.toLowerCase().includes(query) ||
+        project.authorName.toLowerCase().includes(query)
+      );
+    });
 
   const departmentNames: Record<string, string> = {
     [Department.HORTICULTURE]: "البساتين",
@@ -115,7 +116,7 @@ export default function GraduationProjects() {
           </Select>
         </div>
         
-        {isLoading ? (
+        {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array(6).fill(0).map((_, index) => (
               <div key={index} className="bg-white rounded-xl overflow-hidden shadow-sm">

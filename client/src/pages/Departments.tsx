@@ -100,14 +100,14 @@ export default function Departments() {
                 </div>
                 
                 <div className="flex flex-wrap gap-3 mt-4">
-                  <Link href={dept.path}>
+                  <Link href={dept.path || '#'}>
                     <Button variant="outline" className="w-full sm:w-auto">
                       <FileText className="w-4 h-4 ml-2" />
                       عرض القسم
                     </Button>
                   </Link>
                   
-                  <Link href={dept.contentPath}>
+                  <Link href={dept.contentPath || '#'}>
                     <Button variant="secondary" className="w-full sm:w-auto">
                       <FileText className="w-4 h-4 ml-2" />
                       محتوى القسم
@@ -115,7 +115,7 @@ export default function Departments() {
                   </Link>
                   
                   {user && (
-                    <Link href={`${dept.path}/submit-research`}>
+                    <Link to={`${dept.path}/submit-research`}>
                       <Button variant="default" className="w-full sm:w-auto">
                         <Upload className="w-4 h-4 ml-2" />
                         تقديم بحث
