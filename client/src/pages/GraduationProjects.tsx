@@ -18,7 +18,7 @@ interface Project extends DocumentData {
   fileUrl?: string;
   externalLink?: string;
   thumbnailUrl?: string;
-  createdAt: string | Date;
+  createdAt: string | { toDate: () => Date };
 }
 
 export default function GraduationProjects() {
@@ -41,7 +41,12 @@ export default function GraduationProjects() {
       try {
         setLoading(true);
         const data = await getContentByType(ContentType.PROJECT);
-        setProjects(data as Project[]);
+        // Ensure data matches our Project interface
+        const processedData = data.map(item => ({
+          ...item,
+          createdAt: item.createdAt?.toDate ? item.createdAt : item.createdAt
+        }));
+        setProjects(processedData as Project[]);
       } catch (error) {
         console.error("Error loading projects:", error);
       } finally {
