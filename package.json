@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env DATABASE_URL=\"postgresql://AgriQena_owner:npg_2Ot1cuLioMfs@ep-steep-darkness-abw6o4qa-pooler.eu-west-2.aws.neon.tech/AgriQena?sslmode=require\" NODE_ENV=development tsx server/index.ts",
     "start": "cross-env NODE_ENV=production node dist/server/index.js",
-    "build": "tsc"
+    "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
